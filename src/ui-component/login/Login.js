@@ -1,12 +1,16 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
+import { LoginUser } from "../../redux/action/UserAction"
 import "./Login.css"
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 const Login = () => {
 
+    const dispatch = useDispatch()
+
     const onFinish = (values) => {
         console.log('Success:', values);
+        dispatch(LoginUser(values))
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -32,8 +36,8 @@ const Login = () => {
                     autoComplete="off"
                 >
                     <Form.Item
-                        label="Username"
-                        name="username"
+                        label="taiKhoan"
+                        name="taiKhoan"
                         rules={[
                             {
                                 required: true,
@@ -46,7 +50,7 @@ const Login = () => {
 
                     <Form.Item
                         label="Password"
-                        name="password"
+                        name="matKhau"
                         rules={[
                             {
                                 required: true,
@@ -55,17 +59,6 @@ const Login = () => {
                         ]}
                     >
                         <Input.Password />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="remember"
-                        valuePropName="checked"
-                        wrapperCol={{
-                            offset: 8,
-                            span: 16,
-                        }}
-                    >
-                        <Checkbox>Remember me</Checkbox>
                     </Form.Item>
 
                     <Form.Item
